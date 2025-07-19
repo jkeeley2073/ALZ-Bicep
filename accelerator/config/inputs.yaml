@@ -1,0 +1,59 @@
+# Azure Landing Zones Accelerator Configuration
+# For detailed instructions on using this file, visit:
+# https://azure.github.io/Azure-Landing-Zones/accelerator/userguide/2_start/bicep-azuredevops/
+
+# Basic Inputs
+iac_type: "bicep"
+bootstrap_module_name: "alz_azuredevops"
+starter_module_name: "complete"
+
+# Shared Interface Inputs
+bootstrap_location: "eastus2"                                     # Replace with Azure region (e.g., "eastus", "westus2")
+starter_locations: ["eastus2"]                                    # Replace with array of Azure regions
+root_parent_management_group_id: "d5ed8a28-cab9-423e-9429-f235b4baf5c7"                               # Leave empty for Tenant Root Group or specify tenant ID
+subscription_id_management: "615aa927-4e65-4b2e-a96d-a28b25a0459e"       # Replace with management subscription ID
+subscription_id_identity: "f6e4f92d-58ce-41d5-a0f6-4e9649abcea5"           # Replace with identity subscription ID
+subscription_id_connectivity: "2c9a7924-711b-4b9b-b5fc-06f412641a50"   # Replace with connectivity subscription ID
+
+# Bootstrap Inputs
+azure_devops_personal_access_token: "<token-1>"                   # Replace with Azure DevOps PAT (token-1)
+azure_devops_agents_personal_access_token: "<token-2>"           # Replace with Azure DevOps PAT for agents (token-2) or empty string if not using self-hosted agents
+azure_devops_organization_name: "beneighborli"    # Replace with Azure DevOps organization name
+use_separate_repository_for_templates: true                       # Keep as true for security
+bootstrap_subscription_id: ""                                     # Leave empty to use management subscription or specify different subscription ID
+service_name: "nei"                                              # Used for resource naming
+environment_name: "mgmt"                                         # Used for resource naming
+postfix_number: 1                                                # Used for resource naming
+azure_devops_use_organisation_legacy_url: false                  # Set to true if using legacy *.visualstudio.com URL
+azure_devops_create_project: true                                # Set to false if using existing project
+azure_devops_project_name: "beneighborli-alz"        # Replace with Azure DevOps project name
+use_self_hosted_agents: true                                     # Set to false for Microsoft-hosted agents
+use_private_networking: true                                     # Set to false for public networking
+allow_storage_access_from_my_ip: false                          # Not relevant for Bicep, keep as false
+apply_approvers: ["jkeeley@distilledtech.com"]                            # Replace with array of approver email addresses or empty array [] to disable
+create_branch_policies: true                                     # Keep as true for best practices
+
+# Complete Starter Module Specific Variables
+# (Details: https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/bicepcomplete/)
+Prefix: "nei"                                                    # Prefix for resource naming
+Environment: "dev"                                              # Environment name
+networkType: "vwanConnectivitySingleRegion"                                  # Network topology type
+SecurityContact: "jkeeley@distilledtech.com"                    # Replace with security contact email
+
+# Optional: Control deployment of specific network gateways
+deployExpressRouteGateway: false
+deployVpnGateway: true
+deployDdosProtectionPlan: false
+deployAzureBastionEnabled: false
+
+# Point-to-Site (P2S) VPN Configuration
+p2s_vpn_gateway_enabled: true
+p2s_vpn_address_pool_prefixes: ["10.200.0.0/24"]
+p2s_vpn_authentication_types: ["AAD"]
+p2s_aad_tenant_id: "d5ed8a28-cab9-423e-9429-f235b4baf5c7"
+p2s_aad_audience: "41b23e61-6c1e-4545-b367-cd054e0ed4b4" # Default Azure VPN Client App ID
+p2s_aad_issuer: "https://sts.windows.net/d5ed8a28-cab9-423e-9429-f235b4baf5c7/" # Note the trailing slash
+
+# Advanced Inputs
+bootstrap_module_version: "latest"                               # Keep as latest or specify version
+starter_module_version: "latest"                                # Keep as latest or specify version

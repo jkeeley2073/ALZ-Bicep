@@ -352,3 +352,13 @@ MigrationBackup/
 .vscode/settings.json
 
 .DS_Store
+
+# ALZ-Bicep specific patterns
+accelerator/output/
+outputs/
+*.log
+*.tmp
+
+# Azure CLI and PowerShell artifacts
+*.session
+.azure/
