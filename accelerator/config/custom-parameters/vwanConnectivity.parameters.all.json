@@ -1,0 +1,104 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "parLocation": {
+      "value": "eastus2"
+    },
+    "parCompanyPrefix": {
+      "value": "nei"
+    },
+    "parVirtualHubEnabled": {
+      "value": true
+    },
+    "parVirtualWanName": {
+      "value": "nei-vwan"
+    },
+    "parVirtualWanType": {
+      "value": "Standard"
+    },
+    "parVirtualWanHubName": {
+      "value": "nei-vhub"
+    },
+    "parVirtualWanHubDefaultRouteName": {
+      "value": "default-to-azfw"
+    },
+    "parVpnGatewayName": {
+      "value": "nei-vpngw"
+    },
+    "parExpressRouteGatewayName": {
+      "value": "nei-ergw"
+    },
+    "parAzFirewallName": {
+      "value": "nei-fw"
+    },
+    "parAzFirewallPoliciesName": {
+      "value": "nei-azfwpolicy"
+    },
+    "parVirtualWanHubs": {
+      "value": [
+        {
+          "parVpnGatewayEnabled": true,
+          "parExpressRouteGatewayEnabled": false,
+          "parAzFirewallEnabled": true,
+          "parVirtualHubAddressPrefix": "10.100.0.0/23",
+          "parHubLocation": "eastus2",
+          "parHubRoutingPreference": "VpnGateway",
+          "parVirtualRouterAutoScaleConfiguration": 2,
+          "parVirtualHubRoutingIntentDestinations": [],
+          "parAzFirewallDnsServers": [],
+          "parAzFirewallIntelMode": "Alert",
+          "parAzFirewallTier": "Standard",
+          "parAzFirewallAvailabilityZones": [],
+          "parVpnGatewayScaleUnit": 1,
+          "parExpressRouteGatewayScaleUnit": 1,
+          "parDdosEnabled": false,
+          "parDdosPlanName": "",
+          "parPrivateDnsZonesEnabled": true,
+          "parPrivateDnsZones": [],
+          "parVpnClientAddressPoolPrefix": "10.200.0.0/24",
+          "parVpnServerConfiguration": {
+            "name": "nei-p2s-config",
+            "properties": {
+              "vpnAuthenticationTypes": [
+                "AAD"
+              ],
+              "aadTenant": "https://login.microsoftonline.com/d5ed8a28-cab9-423e-9429-f235b4baf5c7/",
+              "aadAudience": "41b23e61-6c1e-4545-b367-cd054e0ed4b4",
+              "aadIssuer": "https://sts.windows.net/d5ed8a28-cab9-423e-9429-f235b4baf5c7/"
+            }
+          }
+        }
+      ]
+    },
+    "parBastionEnabled": {
+      "value": false
+    },
+    "parBastionName": {
+      "value": ""
+    },
+    "parBastionSku": {
+      "value": "Standard"
+    },
+    "parBastionTunneling": {
+      "value": false
+    },
+    "parBastionIpConnect": {
+      "value": false
+    },
+    "parBastionFileConnect": {
+      "value": false
+    },
+    "parPublicIpSuffix": {
+      "value": "-pip"
+    },
+    "parTags": {
+      "value": {
+        "Environment": "dev"
+      }
+    },
+    "parTelemetryOptOut": {
+      "value": false
+    }
+  }
+}
